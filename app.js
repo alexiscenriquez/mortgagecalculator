@@ -21,7 +21,7 @@ button.addEventListener("click", () => {
   getMonthly();
 });
 
-pp.onchange = () => {
+pp.oninput = () => {
   pprice = parseInt(pp.value);
   document.querySelector("#price").innerHTML = pprice;
   getLoanAmount();
@@ -29,20 +29,20 @@ pp.onchange = () => {
   return pprice;
 };
 
-dp.onchange = () => {
+dp.oninput = () => {
   down = parseInt(dp.value);
   document.querySelector("#dpayment").innerHTML = down;
   getLoanAmount();
   if (pprice != undefined) return down;
 };
 
-rt.onchange = () => {
+rt.oninput = () => {
   time = parseInt(rt.value);
   document.querySelector("#rtime").innerHTML = `${time} years`;
   return time;
 };
 
-ir.onchange = () => {
+ir.oninput = () => {
   rate = parseInt(ir.value) * 0.01;
   document.querySelector("#irate").innerHTML = `${rate * 100}%`;
   return rate;
