@@ -23,7 +23,7 @@ button.addEventListener("click", () => {
 
 pp.oninput = () => {
   pprice = parseInt(pp.value);
-  document.querySelector("#price").innerHTML = pprice;
+  document.querySelector("#price").innerHTML = `$${pprice}`;
   getLoanAmount();
 
   return pprice;
@@ -31,7 +31,7 @@ pp.oninput = () => {
 
 dp.oninput = () => {
   down = parseInt(dp.value);
-  document.querySelector("#dpayment").innerHTML = down;
+  document.querySelector("#dpayment").innerHTML = `$${down}`;
   getLoanAmount();
   if (pprice != undefined) return down;
 };
@@ -44,7 +44,7 @@ rt.oninput = () => {
 
 ir.oninput = () => {
   rate = parseInt(ir.value) * 0.01;
-  document.querySelector("#irate").innerHTML = `${rate * 100}%`;
+  document.querySelector("#irate").innerHTML = `${Math.round(rate * 100)}%`;
   return rate;
 };
 
@@ -56,7 +56,11 @@ function getLoanAmount() {
 
 function getMonthly() {
   mortgage = Math.ceil(
-    la * [(rate/12)*((1 + rate / 12) ** (time * 12)) / (((1 + rate / 12) ** (time * 12)) - 1)]
+    la *
+      [
+        ((rate / 12) * (1 + rate / 12) ** (time * 12)) /
+          ((1 + rate / 12) ** (time * 12) - 1),
+      ]
   );
   document.querySelector("#est").innerHTML = `$${mortgage}`;
   return mortgage;
